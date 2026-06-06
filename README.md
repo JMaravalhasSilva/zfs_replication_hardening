@@ -64,7 +64,10 @@ In the "Public SSH Key" you should see something like "ssh-rsa ...". Edit this s
 "command="/mnt/Data/User_Homes/zfs_replication/cmd.sh",no-port-forwarding,no-agent-forwarding,no-X11-forwarding,no-pty ssh-rsa ..."
 
 ## 9) Local - Setup ZFS delegation
-TODO: write me
+For each dataset you wish to replicate, you must allow the user zfs_replication to run "zfs send":
+"zfs allow -u zfs_replication send DATASET_NAME"
+Example:
+"zfs allow -u zfs_replication send Data/my_dataset"
 
 ## 10) Remote - Set up a replication task via the UI as usual
 Ensure that you do NOT use sudo for the replication task. TrueNAS will show you a popup with this, where you need to select "Cancel", otherwise this will not work.
