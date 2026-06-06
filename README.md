@@ -52,6 +52,9 @@ Execute "sudo su" and write your password
 Execute "cd /mnt/Data/User_Homes/zfs_replication"
 Execute "touch cmd.sh && touch command_parser.py"
 Edit the contents of cmd.sh and command_parser.py (using "vi", "nano" or equivalent), and paste the respective contens of those files in this repo.
+Run "chown zfs_replication:zfs_replication cmd.sh"
+Run "chown zfs_replication:zfs_replication command_parser.sh"
+
 
 ## 8) Local - Enable SSH forced command and harder the connection
 Go to "Credentials" > "Users".
@@ -62,5 +65,5 @@ In the "Public SSH Key" you should see something like "ssh-rsa ...". Edit this s
 ## 9) Local - Setup ZFS delegation
 TODO: write me
 
-## 9) Remote - Set up a replication task via the UI as usual
+## 10) Remote - Set up a replication task via the UI as usual
 Ensure that you do NOT use sudo for the replication task. TrueNAS will show you a popup with this, where you need to select "Cancel", otherwise this will not work.
