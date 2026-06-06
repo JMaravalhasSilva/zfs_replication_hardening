@@ -47,13 +47,14 @@ In the "Private Key" section, select "replication_keypair"
 Select "Discover Remote Host Key". If everything is set up correctly up to this point, you should see a key appearing. Otherwise, you've probably messed up your router config or forgot to enable SSH in Step 5).
 
 ## 7) Local - Set up the scripts to be executed
-Go to "System" > "Shell"
-Execute "sudo su" and write your password
-Execute "cd /mnt/Data/User_Homes/zfs_replication"
-Execute "touch cmd.sh && touch command_parser.py"
+Go to "System" > "Shell".
+Execute "sudo su" and write your password.
+Execute "cd /mnt/Data/User_Homes/zfs_replication".
+Execute "touch cmd.sh && touch command_parser.py".
 Edit the contents of cmd.sh and command_parser.py (using "vi", "nano" or equivalent), and paste the respective contens of those files in this repo.
-Run "chown zfs_replication:zfs_replication cmd.sh"
-Run "chown zfs_replication:zfs_replication command_parser.sh"
+Run "chown zfs_replication:zfs_replication cmd.sh".
+Run "chmod +x cmd.sh".
+Run "chown zfs_replication:zfs_replication command_parser.sh".
 
 
 ## 8) Local - Enable SSH forced command and harder the connection
