@@ -4,7 +4,7 @@ All available tutorials on how to do ZFS replication on TrueNAS assume that the 
 
 There has been some talk about [hardening the replication setup](https://www.youtube.com/watch?v=AvYx9O6wN20), but TrueNAS does NOT support this out of the box, and tutorials are almost nonexistent. Worse, some, like [this one](https://www.youtube.com/watch?v=uEJq2UW_Ct8), **confidently tell you to allow the replication user to run "sudo zfs", meaning that if the backup machine is ever compromised, a malicious actor can just destroy the data on the backup machine and then run "sudo zfs destroy" on the main machine**. 
 
-This repo contains instructions on how to do proper hardening. It disables password login, disables funny business like allowing the compromised backup machine to SSH hop into other machines in the main machine's network, does NOT use sudo, properly uses ZFS delegation instead of handling a hacker a way to destroy all of your data. It also runs strict validation of the commands that the backup machine issues, so that a backup machine may NEVER run unauthorized commands beyond retrieving the datasets to be backed up.
+This repo contains instructions on how to do proper hardening. It disables password login, disables funny business like allowing the compromised backup machine to SSH hop into other machines in the main machine's network, does NOT use sudo, and properly uses ZFS delegation instead of handling a hacker a way to destroy all of your data. It additionally runs strict validation of the commands issued by the backup machine, so that it may NEVER run unauthorized commands beyond retrieving the datasets to be backed up.
 
 This tutorial uses the following names for the two machines:
 - Local  - The machine which contains the dataset
