@@ -3,11 +3,11 @@ import re
 import sys
 from datetime import datetime, UTC
 
-
 dataset_regex  = r"[A-Za-z0-9._/-]+"
 snapshot_regex = r"[A-Za-z0-9._:-]+"
 flags          = r"-[A-Za-z](?: -[A-Za-z])*" # Match multiple flags like -V -p -w -L -c -i
 zfs_opts       = r"[a-z]+(?:[ ,][a-z]+)*"    # Match comma-separated lowercase options like "filesystem,volume"
+resume_token   = r"[A-Za-z0-9-]+"
 
 ALLOWED_CMDS = [
       r"",
@@ -22,6 +22,7 @@ ALLOWED_CMDS = [
       rf"sh -c 'PATH=\$PATH:/usr/local/sbin:/usr/sbin:/sbin ps -o command -p \d+ 2>&1'",
       rf"sh -c 'PATH=\$PATH:/usr/local/sbin:/usr/sbin:/sbin zfs get {flags} {zfs_opts} used {dataset_regex} 2>&1'",
       rf"sh -c 'PATH=\$PATH:/usr/local/sbin:/usr/sbin:/sbin zfs list {flags} {zfs_opts} {flags} name -s name -r 2>&1'",
+      rf"""sh -c 'PATH=\$PATH:/usr/local/sbin:/usr/sbin:/sbin sh -c '"'"'\(zfs send {flags} {resume_token} & PID=\$!; echo "zettarepl: zfs send PID is \$PID" 1>&2; wait \$PID\)'"'"''"""
 ]
 
 date = datetime.now(UTC).strftime('%Y-%m-%d %H:%M:%S')
